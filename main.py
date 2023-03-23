@@ -11,16 +11,15 @@ DISCOUNT = 0.95  # how much we care about future rewards
 EPISODES = 500  # how many episodes we want to run
 SHOW_EVERY = 50  # how often we want to see the results
 DISC_STEPS = 6   # how many steps we want to divide the space into
-STATE_COUNT = len(env.observation_space.high) # how many states we have
+STATE_COUNT = len(env.observation_space.high)  # how many states we have
 DISC_STATE_COUNT = DISC_STEPS*STATE_COUNT
 
 LOWER_OBSERVATIONS = env.observation_space.low
-LOWER_OBSERVATIONS[1]=-4
-LOWER_OBSERVATIONS[3]=-4
+LOWER_OBSERVATIONS[1] = -4
+LOWER_OBSERVATIONS[3] = -4
 UPPER_OBSERVATIONS = env.observation_space.high
-UPPER_OBSERVATIONS[1]=4
-UPPER_OBSERVATIONS[3]=4
-# Exploration settings
+UPPER_OBSERVATIONS[1] = 4
+UPPER_OBSERVATIONS[3] = 4
 
 temp_array = [DISC_STEPS]*len(env.observation_space.high)
 
@@ -108,29 +107,28 @@ def plot_optimal_policy(q_table):
 
 
 def solve():
-    t=0
+    t = 0
     MAX_STEPS = 500
     PosWithinRange = False
     angWithinRange = False
     for episode in range(EPISODES):
         (curr_state, _) = env.reset()
-        ## check if the states are within an acceptable range
-        if curr_state[0] < 2.4 and curr_state[0] > -2.4 :
+        # check if the states are within an acceptable range
+        if curr_state[0] < 2.4 and curr_state[0] > -2.4:
             PosWithinRange = True
         else:
             PosWithinRange = False
-        if curr_state[2] < 0.2095 and curr_state[2] > -0.2095 :
+        if curr_state[2] < 0.2095 and curr_state[2] > -0.2095:
             angWithinRange = True
         else:
             angWithinRange = False
-
 
         print("Simulating episode {}".format(episode))
 
         episode_rewards = []
 
         is_terminal = False
-        while not is_terminal and t<MAX_STEPS and PosWithinRange and angWithinRange:
+        while not is_terminal and t < MAX_STEPS and PosWithinRange and angWithinRange:
 
             disc_curr_state = get_descrete_state_v2(curr_state)
 
@@ -153,17 +151,13 @@ def solve():
             else:
                 error = reward-q_table[disc_curr_state+(action,)]
                 q_table[disc_curr_state+(action,)] += LEARNING_RATE*error
-                
-          
+
             curr_state = next_state
 
         print("Sum of rewards {}".format(np.sum(episode_rewards)))
         total_episode_rewards.append(np.sum(episode_rewards))
     print("Average reward over 500 episodes: ", np.mean(total_episode_rewards))
     return total_episode_rewards, q_table
-
-
-        
 
 
 q_table = init_q_table_v2()
