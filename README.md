@@ -1,5 +1,5 @@
 # Gymnasium-CartPole-QLearining
-The solution to my first quiz in the "Reinforcement Learning for Mechatronics Engineers and Optimal Control" course. Is not perfect but it works. There exists many unused functions and variables atm, this is due to us being short on time and thus unable to clear everything atm.
+The solution to my first quiz in the "Reinforcement Learning for Mechatronics Engineers and Optimal Control" course. It's not perfect but it works. There exists many unused functions and variables atm, this is due to us being short on time and thus unable to clear everything at the time of submitting.
 
 ## Usage
 
