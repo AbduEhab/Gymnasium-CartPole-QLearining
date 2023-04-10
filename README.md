@@ -1,6 +1,8 @@
 # Gymnasium-CartPole-QLearining
 The solution to my first quiz in the "Reinforcement Learning for Mechatronics Engineers and Optimal Control" course. It's not perfect but it works. There exists many unused functions and variables atm, this is due to us being short on time and thus unable to clear everything at the time of submitting.
 
+[Moataz](https://github.com/Moataz-0) was my team mate for the quiz.
+
 ## Usage
 
 Just make sure that you have `numpy`, `gymnasium`, `pyglet` and `pygame` installed.
